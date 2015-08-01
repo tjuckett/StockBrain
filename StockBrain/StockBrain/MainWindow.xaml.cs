@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 
 namespace StockBrain
 {
+    using StockBrainModules.Caching;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -23,6 +25,15 @@ namespace StockBrain
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime startTime = new DateTime(1980, 12, 12);
+            DateTime endTime = new DateTime(2015, 7, 31);
+
+            StockHistory history = new StockHistory("AAPL", StockHistory.RangeType.Daily, startTime, endTime);
+            history.LoadPriceHistory();
         }
     }
 }
